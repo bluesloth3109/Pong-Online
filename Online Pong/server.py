@@ -1,9 +1,13 @@
 import socket
 from _thread import *
 import sys
+import json
 
-server = "192.168.1.8"
-port = 5555
+with open('netconfig.json', 'r') as f:
+	config = json.load(f)
+
+server = config[network]
+port = config[port]
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
