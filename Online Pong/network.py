@@ -1,10 +1,17 @@
 import socket
+import json
+
+with open('netconfig.json', 'r') as f:
+	config = json.load(f)
+
+server = config[network]
+port = config[port]
 
 class Network:
 	def __init__(self):
 		self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		self.server = "192.168.1.8"
-		self.port = 5555
+		self.server = server
+		self.port = port
 		self.addr = (self.server, self.port)
 		self.pos = self.connect()
 
